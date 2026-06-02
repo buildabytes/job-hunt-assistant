@@ -14,7 +14,9 @@ def load_resume():
 def extract_between_markers(text, start, end=None):
     try:
         start_idx = text.index(start) + len(start)
-        end_idx = text.index(end, start_idx) if and else len(text)
+        end_idx = text.index(end, start_idx)
+        if end_idx == -1:
+            end_idx = len(text)
         return text[start_idx:end_idx].strip()
     except ValueError:
         return "Not found"
